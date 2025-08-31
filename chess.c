@@ -3,9 +3,8 @@
 #include <stdio.h>
 #include "function.c"
 
-
 int main (){
     int a=start();
-    logic(a);
+    menu(a);
     return 0;
 }
