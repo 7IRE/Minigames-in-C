@@ -58,7 +58,33 @@ void board(){
     while(a==0||a==1){
         a=logic(data,&b,&c);
         display(data);
+        int i=1,j=1;
+        for(int loop=0;loop<8;loop++){
+            for(int hloop=0;hloop<8;hloop++){
+                if(data[loop][hloop]=='K'){
+                    i=0;
+                }
+            }
+        }
+        for(int loop=0;loop<8;loop++){
+            for(int hloop=0;hloop<8;hloop++){
+                if(data[loop][hloop]=='k'){
+                    j=0;
+                }
+            }
+        }
+        if(i==1){
+            printf("\n------------Black WINS----------\n");
+            break;
+        }
+        else if(j==1){
+            printf("\n------------White WINS----------\n");
+            break;
+        }
     }
+    printf("\nEnter anything to close....\n");
+    scanf("%d",&c);
+
 }
 
 void menu(int a){
@@ -72,6 +98,7 @@ void menu(int a){
     printf("When its your turn ,you select a piece , For example a pawn of white so you write 'P' followed by space and then its location in numbers , first row (1-8) then space then its colum (1-8) then space, For Example='P 7 2' \n after this you need to write the final location of the piece in same manner. \n");
     printf("NOTE:This is not chess notation and writing chess notation here will result in error \n");
     line();
+    printf("To Win you need to capture another king . ENJOY ");
     if(a==1){
         board();
     }

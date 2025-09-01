@@ -12,3 +12,14 @@ int bpawn(char *data,int *pos);
 
 int wking(char *data,int *pos);
 int bking(char *data,int *pos);
+
+int bpath(char *data,int *pos);
+int wbishoop(char *data,int *pos);
+int bbishoop(char *data ,int *pos);
+
+int rqueen(char *data,int *pos);
+int wqueen(char *data,int *pos);
+int bqueen(char *data,int *pos);
+
+int wknight(char *data,int *pos);
+int bknight(char *data,int *pos);
