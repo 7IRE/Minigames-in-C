@@ -6,7 +6,7 @@
 int wknight(char data[8][8],int pos[4]){
     if(((abs(pos[3]-pos[1])==2)&&(abs(pos[2]-pos[0])==1))||(abs(pos[3]-pos[1])==1)&&(abs(pos[2]-pos[0])==2)){
         if(data[pos[2]][pos[3]]==' '||data[pos[2]][pos[3]]=='p'||data[pos[2]][pos[3]]=='q'||data[pos[2]][pos[3]]=='r'||data[pos[2]][pos[3]]=='b'||data[pos[2]][pos[3]]=='k'||data[pos[2]][pos[3]]=='n'){
-            data[pos[2]][pos[3]]='K';
+            data[pos[2]][pos[3]]='N';
             data[pos[0]][pos[1]]=' ';
             return 1;
         }
@@ -16,7 +16,7 @@ int wknight(char data[8][8],int pos[4]){
 int bknight(char data[8][8],int pos[4]){
     if(((abs(pos[3]-pos[1])==2)&&(abs(pos[2]-pos[0])==1))||(abs(pos[3]-pos[1])==1)&&(abs(pos[2]-pos[0])==2)){
         if(data[pos[2]][pos[3]]==' '||data[pos[2]][pos[3]]=='P'||data[pos[2]][pos[3]]=='Q'||data[pos[2]][pos[3]]=='R'||data[pos[2]][pos[3]]=='B'||data[pos[2]][pos[3]]=='K'||data[pos[2]][pos[3]]=='N'){
-            data[pos[2]][pos[3]]='k';
+            data[pos[2]][pos[3]]='n';
             data[pos[0]][pos[1]]=' ';
             return 0;
         }
@@ -101,6 +101,7 @@ int wking(char data[8][8],int pos[4]){
         data[pos[0]][pos[1]]=' ';
         return 1;
     }
+    else
     return 0;
 }
 
@@ -111,6 +112,7 @@ int bking(char data[8][8],int pos[4]){
         data[pos[0]][pos[1]]=' ';
         return 0;
     }
+    else
     return 1;
 }
 //----------------------------------------------------------------------------------------------------------------
@@ -305,20 +307,23 @@ int wturn(int pos[4],char piece ,char data[8][8]){
     if((piece=='R')  &&  (data[pos[0]][pos[1]]=='R')){
         return wrook(data,pos);
     }
-    if((piece=='N')  &&  (data[pos[0]][pos[1]]=='N')){
+    else if((piece=='N')  &&  (data[pos[0]][pos[1]]=='N')){
         return wknight(data,pos);
     }
-    if((piece=='B')  &&  (data[pos[0]][pos[1]]=='B')){
+    else if((piece=='B')  &&  (data[pos[0]][pos[1]]=='B')){
         return wbishoop(data,pos);
     }
-    if((piece=='K')  &&  (data[pos[0]][pos[1]]=='K')){
+    else if((piece=='K')  &&  (data[pos[0]][pos[1]]=='K')){
         return wking(data,pos);
     }
-    if((piece=='Q')  &&  (data[pos[0]][pos[1]]=='Q')){
+    else if((piece=='Q')  &&  (data[pos[0]][pos[1]]=='Q')){
         return wqueen(data,pos);
     }
-    if((piece=='P')  &&  (data[pos[0]][pos[1]]=='P')){
+    else if((piece=='P')  &&  (data[pos[0]][pos[1]]=='P')){
         return wpawn(data,pos);
+    }
+    else{
+        return 0;
     }
 
 }
@@ -326,20 +331,23 @@ int bturn(int pos[4],char piece ,char data[8][8]){
     if((piece=='r')  &&  (data[pos[0]][pos[1]]=='r')){
         return brook(data,pos);
     }
-    if((piece=='n')  &&  (data[pos[0]][pos[1]]=='n')){
+    else if((piece=='n')  &&  (data[pos[0]][pos[1]]=='n')){
         return bknight(data,pos);
     }
-    if((piece=='b')  &&  (data[pos[0]][pos[1]]=='b')){
+    else if((piece=='b')  &&  (data[pos[0]][pos[1]]=='b')){
         return bbishoop(data,pos);
     }
-    if((piece=='k')  &&  (data[pos[0]][pos[1]]=='k')){
+    else if((piece=='k')  &&  (data[pos[0]][pos[1]]=='k')){
         return bking(data,pos);
     }
-    if((piece=='q')  &&  (data[pos[0]][pos[1]]=='q')){
+    else if((piece=='q')  &&  (data[pos[0]][pos[1]]=='q')){
         return bqueen(data,pos);
     }
-    if((piece=='p')  &&  (data[pos[0]][pos[1]]=='p')){
+    else if((piece=='p')  &&  (data[pos[0]][pos[1]]=='p')){
         return bpawn(data,pos);
+    }
+    else{
+        return 1;
     }
     
 }
