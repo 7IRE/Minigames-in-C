@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 void display(char data[3][3]){
     printf("TIC-TAC_TOE\n\n");
     printf("%c |%c | %c\n",data[0][0],data[1][0],data[2][0]);  
