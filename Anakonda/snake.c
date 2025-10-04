@@ -8,31 +8,7 @@
 
 
 //==========================================================================================================================================
-void display(char data[g][g][3]){
-    system("cls");
-    printf("+");
-    for(int i=0;i<g;i++){
-        printf("==");
-    }
-    printf("+\n");
-    for(int j=0;j<g;j++){
-        printf("|");
-        for(int i=0;i<g;i++){
-            if((data[i][j][0]=='a')||(data[i][j][0]=='d')||(data[i][j][0]=='s')||(data[i][j][0]=='w')){
-                printf("o ");
-            }
-            else{
-                printf("%c ",data[i][j][0]);
-            }
-        }
-        printf("|\n");
-    }
-    printf("+");
-    for(int i=0;i<g;i++){
-        printf("==");
-    }
-    printf("+\n");
-}
+
 //==========================================================================================================================================
 
 void init(char data[g][g][3]){
@@ -52,7 +28,7 @@ void init(char data[g][g][3]){
 }
 //==========================================================================================================================================
 
-void move(char data[g][g][3],char direction,int* game){
+void move(char data[g][g][3],char direction,int* game,int* score){
 
     //Apple Generator
     int a=0;
@@ -102,6 +78,7 @@ void move(char data[g][g][3],char direction,int* game){
                 data[ht[0]-1][ht[1]][0]=direction;
                 data[ht[0]][ht[1]][1]=' ';
                 data[ht[0]-1][ht[1]][1]='h';
+                
                 mv=1;
             }
             break;
@@ -109,11 +86,13 @@ void move(char data[g][g][3],char direction,int* game){
             if(data[ht[0]+1][ht[1]][0]==' '||data[ht[0]+1][ht[1]][0]=='A'){
                 if(data[ht[0]+1][ht[1]][0]=='A'){
                     apple=1;
+                    
                 }
                 data[ht[0]][ht[1]][0]=direction;
                 data[ht[0]+1][ht[1]][0]=direction;
                 data[ht[0]][ht[1]][1]=' ';
                 data[ht[0]+1][ht[1]][1]='h';
+                
                 mv=1;
             }
             break;
@@ -121,11 +100,13 @@ void move(char data[g][g][3],char direction,int* game){
             if(data[ht[0]][ht[1]-1][0]==' '||data[ht[0]][ht[1]-1][0]=='A'){
                 if(data[ht[0]][ht[1]-1][0]=='A'){
                     apple=1;
+                    
                 }
                 data[ht[0]][ht[1]][0]=direction;
                 data[ht[0]][ht[1]-1][0]=direction;
                 data[ht[0]][ht[1]][1]=' ';
                 data[ht[0]][ht[1]-1][1]='h';
+                
                 mv=1;
             }
             break;
@@ -133,11 +114,13 @@ void move(char data[g][g][3],char direction,int* game){
             if(data[ht[0]][ht[1]+1][0]==' '||data[ht[0]][ht[1]+1][0]=='A'){
                 if(data[ht[0]][ht[1]+1][0]=='A'){
                     apple=1;
+                
                 }
                 data[ht[0]][ht[1]][0]=direction;
                 data[ht[0]][ht[1]+1][0]=direction;
                 data[ht[0]][ht[1]][1]=' ';
                 data[ht[0]][ht[1]+1][1]='h';
+                
                 mv=1;
             }
             break;
@@ -173,20 +156,56 @@ void move(char data[g][g][3],char direction,int* game){
     }
 }
 
+void display(char data[g][g][3],int* score,int* tme){
+    system("cls");
+    printf("SCORE: %d                                  TIME: %d\n",*score,*tme);
+    printf("+");
+    for(int i=0;i<g;i++){
+        printf("==");
+    }
+    printf("+\n");
+    for(int j=0;j<g;j++){
+        printf("|");
+        for(int i=0;i<g;i++){
+            if((data[i][j][0]=='a')||(data[i][j][0]=='d')||(data[i][j][0]=='s')||(data[i][j][0]=='w')){
+                printf("o ");
+            }
+            else{
+                printf("%c ",data[i][j][0]);
+            }
+        }
+        printf("|\n");
+    }
+    printf("+");
+    for(int i=0;i<g;i++){
+        printf("==");
+    }
+    printf("+\n");
+}
 
 //==========================================================================================================================================
 int main (){
     char direction='d';
     char data[g][g][3];
+    int score=0,tme=0;
     init(data);
     sleep(3);
     int game=0;
     while(game==0){
-        display(data);
+        display(data,&score,&tme);
         if (kbhit()) {
             direction = getch();
         }
-        move(data,direction,&game);
+        tme++;
+        move(data,direction,&game,&score);
+        score=0;
+        for(int i=0;i<g;i++){
+            for(int j=0;j<g;j++){
+                if((data[i][j][0]=='a')||(data[i][j][0]=='d')||(data[i][j][0]=='s')||(data[i][j][0]=='w')){
+                    score++;
+                }
+            }
+        }
         
     }
     printf("---THE END---");

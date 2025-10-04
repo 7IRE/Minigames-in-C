@@ -13,10 +13,9 @@ int main (){
     char string[6]="empty";
     srand(time(0));
     number=rand()%2309+1;
-    
     for(int loop=1;loop<=number;loop++){
         fscanf(ptr,"%s",string);
-    }
+    }   
     fclose(ptr);
     printf("Enter a 5 digit word , remember you have 6 attempts.");
     while(attempt!=6&&win==0){
