@@ -157,30 +157,33 @@ void move(char data[g][g][3],char direction,int* game,int* score){
 }
 
 void display(char data[g][g][3],int* score,int* tme){
-    system("cls");
-    printf("SCORE: %d                                  TIME: %d\n",*score,*tme);
-    printf("+");
+    printf("\033[0;0H");
+    printf("SCORE: %d                                  TIME: %d \n",*score,*tme);
+    printf("\033[42m ");
     for(int i=0;i<g;i++){
-        printf("==");
+        printf("\033[42m  ");
     }
-    printf("+\n");
+    printf("\033[42m \n");
     for(int j=0;j<g;j++){
-        printf("|");
+        printf("\033[42m ");
         for(int i=0;i<g;i++){
             if((data[i][j][0]=='a')||(data[i][j][0]=='d')||(data[i][j][0]=='s')||(data[i][j][0]=='w')){
-                printf("o ");
+                printf("\033[103m  ");
+            }
+            else if(data[i][j][0]==' '){
+                printf("\033[42m  ");
             }
             else{
-                printf("%c ",data[i][j][0]);
+                printf("\033[101m  ");
             }
         }
-        printf("|\n");
+        printf("\033[42m \n");
     }
-    printf("+");
+    printf("\033[42m ");
     for(int i=0;i<g;i++){
-        printf("==");
+        printf("\033[42m  ");
     }
-    printf("+\n");
+    printf("\033[42m \n");
 }
 
 //==========================================================================================================================================
@@ -191,10 +194,15 @@ int main (){
     init(data);
     sleep(3);
     int game=0;
+    char buffer;
     while(game==0){
         display(data,&score,&tme);
+        buffer=direction;
         if (kbhit()) {
             direction = getch();
+        }
+        if((buffer=='d'&&direction=='a')||(buffer=='a'&&direction=='d')||(buffer=='w'&&direction=='s')||(buffer=='s'&&direction=='w')){
+            direction=buffer;
         }
         tme++;
         move(data,direction,&game,&score);
@@ -206,7 +214,7 @@ int main (){
                 }
             }
         }
-        
+        usleep(10000); 
     }
     printf("---THE END---");
     scanf("%d",&game);

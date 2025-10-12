@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-
+#include <unistd.h>
 void check(char *string , char *input , int *win);
 
 int main (){
@@ -33,6 +33,7 @@ int main (){
     else{
         printf("YOU LOSE");
     }
+    sleep(5);
     return 0;
 }
 
@@ -40,17 +41,17 @@ void check(char string[6], char input[6], int *win){
     for(int loop=0;loop<5;loop++){
         int a=0;
         if(string[loop]==input[loop]){
-            printf("%c",string[loop]);
+            printf("\033[102m%c\033[0m",string[loop]);
         }
         else {
             for(int hloop=0;hloop<5;hloop++){
                 if(string[hloop]==input[loop]){
-                    printf("_");
+                    printf("\033[103m \033[0m");
                     a=1;
                 }
             }
             if(a==0){
-                    printf(".");
+                    printf("\033[101m \033[0m");
             }
 
         }

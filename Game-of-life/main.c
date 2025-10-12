@@ -7,29 +7,29 @@
 #define z 40
 
 void display(int board[z][z]){
-        system("cls");
-        printf("+");
+        printf("\033[0;0H");
+        printf("\033[100m ");
         for(int h=0;h<z;h++){
-            printf("==");
+            printf("\033[100m  ");
         }
-        printf("+\n");
+        printf("\033[100m \n");
         for(int h=0;h<z;h++){
-            printf("|");
+            printf("\033[100m ");
             for(int i=0;i<z;i++){
                 if(board[i][h]==1){
-                    printf("[]");
+                    printf("\033[107m  ");
                 }
                 else{
-                    printf("  ");
+                    printf("\033[100m  ");
                 }
             }
-            printf("|\n");
+            printf("\033[100m \n");
         }
-        printf("+");
+        printf("\033[100m ");
         for(int h=0;h<z;h++){
-            printf("==");
+            printf("\033[100m  ");
         }
-        printf("+");
+        printf("\033[100m ");
     }
 
 
@@ -47,6 +47,7 @@ int main (){
 
     printf("\nSet Initial Condition \nw,a,s,d-Move Invisible pointer \n t-toggle state (alive or dead) \n r-start the game\n");
     sleep(5);
+    system("cls");
     char input='z';
     int setup=1;
     int v=1,h=1;
@@ -100,9 +101,11 @@ int main (){
         input='z';
 
     }
+    system("cls");
+    printf("\033[0m");
     printf("\n STARTING  SIMULATION \n (q to exit and s to slow down simulation & n for normal speed)");
-    sleep(1);
-    
+    sleep(3);
+    system("cls");
     while (setup==0){
         for(int h=0;h<z;h++){
             for(int v=0;v<z;v++){
@@ -163,11 +166,11 @@ int main (){
         if (input == 's') sleep(1);
         if (input == 'n') usleep(100);
         }
-
+        usleep(50000);
 
     }
     
-    sleep(1);
+    sleep(3);
     return 0;
     
 }
